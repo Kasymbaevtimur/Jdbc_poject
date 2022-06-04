@@ -60,6 +60,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String sql = "DELETE * FROM users WHERE id=?";
         try (Connection connection = Util.connection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
