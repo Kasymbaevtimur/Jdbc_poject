@@ -17,7 +17,7 @@ public class UserDaoJdbcImpl implements UserDao {
         try (Connection connection = Util.connection();
              Statement statement = connection.createStatement()) {
             String SQL = " CREATE TABLE IF NOT EXISTS users  " +
-                    "(id BIGSERIAL PRIMARY KEY NOT NULL," +
+                    "(id BIGSERIAL PRIMARY KEY ," +
                     " name VARCHAR (55) NOT NULL," +
                     " lastName VARCHAR (55) NOT NULL," +
                     " age INT2 NOT NULL)";
@@ -42,7 +42,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     public void saveUser(String name, String lastName, byte age) {
         try {
-            String SQL = " Insert into users(name,lastName,age) values(?,?,?)";
+            String SQL = " insert into users(name,lastName,age) values(?,?,?)";
             Connection connection = Util.connection();
             PreparedStatement prep = connection.prepareStatement(SQL);
             prep.setString(1, name);
@@ -57,7 +57,7 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        String sql = "DELETE * FROM users WHERE id=?";
+        String sql = "DELETE FROM users WHERE id=?;";
         try (Connection connection = Util.connection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1,id);
@@ -76,6 +76,7 @@ public class UserDaoJdbcImpl implements UserDao {
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
                 User user = new User();
+                user.setId(resultSet.getLong("id"));
                 user.setName(resultSet.getString("name"));
                 user.setLastName(resultSet.getString("lastName"));
                 user.setAge(resultSet.getByte("age"));

@@ -15,26 +15,26 @@ public class UserServiceTest {
     private final String testName = "Kanat";
     private final String testLastName = "Subanov";
     private final byte testAge = 23;
+    @Test
+    public void createUsersTable() {
+        try {
 
+            userService.createUsersTable();
+        } catch (Exception e) {
+            Assert.fail("При тестировании создания таблицы пользователей произошло исключение\n" + e.getMessage());
+        }
+    }
     @Test
     public void dropUsersTable() {
         try {
-            userService.dropUsersTable();
+            userService.createUsersTable();
             userService.dropUsersTable();
         } catch (Exception e) {
             Assert.fail("При тестировании удаления таблицы произошло исключение\n" + e);
         }
     }
 
-    @Test
-    public void createUsersTable() {
-        try {
-            userService.dropUsersTable();
-            userService.createUsersTable();
-        } catch (Exception e) {
-            Assert.fail("При тестировании создания таблицы пользователей произошло исключение\n" + e.getMessage());
-        }
-    }
+
 
     @Test
     public void saveUser() {

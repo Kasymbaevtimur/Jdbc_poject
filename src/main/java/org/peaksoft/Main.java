@@ -9,7 +9,6 @@ public class Main {
         UserDaoJdbcImpl daoJdbc = new UserDaoJdbcImpl();
 
         daoJdbc.createUsersTable();
-
         daoJdbc.saveUser("Karim", "Benzema", (byte) 34);
         daoJdbc.saveUser("Luka", "Modric", (byte) 36);
         daoJdbc.saveUser("Toni", "Kroos", (byte) 32);
