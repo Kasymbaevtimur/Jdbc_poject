@@ -1,23 +1,20 @@
 package org.peaksoft;
 
-import org.peaksoft.dao.UserDaoJdbcImpl;
+import org.peaksoft.dao.UserDaoHibernateImpl;
 
 public class Main {
     public static void main(String[] args) {
 
+        UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
 
-        UserDaoJdbcImpl daoJdbc = new UserDaoJdbcImpl();
 
-        daoJdbc.createUsersTable();
-        daoJdbc.saveUser("Karim", "Benzema", (byte) 34);
-        daoJdbc.saveUser("Luka", "Modric", (byte) 36);
-        daoJdbc.saveUser("Toni", "Kroos", (byte) 32);
-        daoJdbc.saveUser("Federico", "Valverde", (byte) 23);
-        daoJdbc.saveUser("Eduardo", "Camavinga", (byte) 19);
+        // userDaoHibernate.saveUser("Tomi","Shelbi", (byte) 27);
+        // userDaoHibernate.saveUser("Karim","Benzema", (byte) 32);
+        // userDaoHibernate.saveUser("Luka","Modric", (byte) 36);
 
-        System.out.println(daoJdbc.getAllUsers());
-        daoJdbc.cleanUsersTable();
-        daoJdbc.dropUsersTable();
+        //userDaoHibernate.removeUserById(2);
+        //System.out.println(userDaoHibernate.getAllUsers());
+        // userDaoHibernate.cleanUsersTable();
 
     }
 }
